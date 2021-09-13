@@ -32,4 +32,17 @@ fn main() {
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
+
+    // ---
+
+    let dst = cmake::Config::new("SOES")
+        .build_target("soes")
+        .cflag("-Wno-error=address-of-packed-member")
+        .build();
+
+    println!(
+        "cargo:rustc-link-search=native={}/build/soes",
+        dst.display()
+    );
+    println!("cargo:rustc-link-lib=static=soes");
 }
