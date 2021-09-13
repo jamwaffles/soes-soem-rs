@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "soem",
+    "soem-sys",
+    "soes",
+    "soes-sys",
+]
